@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.Article;
 import com.example.demo.services.ArticleService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ public class ArticleController {
     private final ArticleService articleService;
 
     @PostMapping
-    public Article create(@RequestBody Article article) {
+    public Article create(@Valid @RequestBody Article article) {
         return articleService.create(article);
     }
 
@@ -24,7 +25,7 @@ public class ArticleController {
     }
 
     @PutMapping("/{id}")
-    public Article update(@PathVariable Long id, @RequestBody Article article) {
+    public Article update(@PathVariable Long id, @Valid @RequestBody Article article) {
         return articleService.update(id, article);
     }
 
