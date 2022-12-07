@@ -21,8 +21,8 @@ public class MovementServiceImplement implements MovementService {
         return movementRepository.save(movement);
     }
 
-//    @Override
-//    public List<Movement> index() {
-//        return movementRepository.findAll();
-//    }
+    @Override
+    public List<Movement> index() {
+        return movementRepository.findFirst50ByOrderByCreatedAtDesc();
+    }
 }

@@ -19,10 +19,10 @@ public class MovementController {
         return movementService.create(movement);
     }
 
-//    @GetMapping("index")
-//    public List<Movement> index() {
-//        return movementService.index();
-//    }
+    @GetMapping("index")
+    public List<Movement> index() {
+        return movementService.index();
+    }
 //
 //    @PutMapping("/{id}")
 //    public Movement update(@PathVariable Long id, @Valid @RequestBody Movement movement) {
