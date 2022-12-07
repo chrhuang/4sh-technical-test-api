@@ -8,5 +8,4 @@ public interface MovementService {
     Movement create(Movement movement) throws Exception;
 
     List<Movement> index();
-//    Movement update(Long id, Movement movement);
 }
