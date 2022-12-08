@@ -40,7 +40,7 @@ public class EmailSenderService {
         helper.setSubject("Test");
         helper.setTo("christian.huang.49@gmail.com");
         String emailContent = getEntryContent(movement);
-        helper.setText(emailContent, true);
+        helper.setText(emailContent, false);
         mailSender.send(mimeMessage);
     }
 
@@ -48,8 +48,13 @@ public class EmailSenderService {
     String getEntryContent(Movement movement) throws IOException, TemplateException {
         StringWriter stringWriter = new StringWriter();
         Map<String, Object> model = new HashMap<>();
+        model.put("type", movement.getType());
         model.put("createAt", movement.getCreatedAt());
         model.put("quantity", movement.getQuantity());
+        model.put("weight", movement.getWeight());
+        model.put("description", movement.getDescription());
+        model.put("totalQuantity", movement.getTotalQuantity());
+        model.put("totalWeight", movement.getTotalWeight());
         configuration.getTemplate("entry_movement.ftl").process(model, stringWriter);
         return stringWriter.getBuffer().toString();
     }
