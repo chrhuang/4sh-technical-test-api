@@ -1,15 +1,16 @@
-<p><CargoMessage type="WarehouseMovement-In"></p>
+<CargoMessage type="WarehouseMovement-Out">
     <Header from="RAPIDCARGO" to="CARGOINFO" messageTime="${currentTime}" messageId="${id}" />
-    <WarehouseMovementIn>
+    <WarehouseMovementOut>
         <movementTime>${createdAt}</movementTime>
         <declaredIn code="CDGRC1" label="RapidCargo CDG"/>
-        <from code="CDGAF1" label="Air Cargo CDG 1"/>
+        <to code="CDGAF1" label="Air Cargo CDG 1"/>
         <goods>
             <ref type="${type}" code="${reference}"/>
             <amount quantity="${quantity}" weight="${weight}"/>
             <description>${description}</description>
             <totalRefAmount quantity="${totalQuantity}" weight="${totalWeight}"/>
         </goods>
-    <customsStatus>${customsCode}</customsStatus>
-</WarehouseMovementIn>
+        <customsStatus>${customsCode}</customsStatus>
+        <customsDocument type="${customsDocumentType}" ref="${customsDocumentReference}" />
+    </WarehouseMovementOut>
 </CargoMessage>

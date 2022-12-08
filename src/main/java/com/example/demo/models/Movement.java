@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,6 +34,7 @@ public class Movement {
     private String warehouse;
     @NotBlank
     private String warehouseCode;
+    @Pattern(regexp="^[A-Za-z]*$",message = "Invalid Input")
     @Length(min = 1, max = 1)
     private String customsCode;
     private String customsDocumentReference;

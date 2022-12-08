@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,14 +50,24 @@ public class EmailSenderService {
     String getEntryContent(Movement movement) throws IOException, TemplateException {
         StringWriter stringWriter = new StringWriter();
         Map<String, Object> model = new HashMap<>();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        model.put("id", movement.getId());
         model.put("type", movement.getType());
-        model.put("createAt", movement.getCreatedAt());
+        model.put("createdAt", movement.getCreatedAt());
         model.put("quantity", movement.getQuantity());
         model.put("weight", movement.getWeight());
         model.put("description", movement.getDescription());
         model.put("totalQuantity", movement.getTotalQuantity());
         model.put("totalWeight", movement.getTotalWeight());
-        configuration.getTemplate("entry_movement.ftl").process(model, stringWriter);
+        model.put("reference", movement.getReference());
+        model.put("currentTime", dtf.format(now));
+        model.put("customsCode", movement.getCustomsCode());
+        model.put("customsDocumentType", movement.getCustomsDocumentType());
+        model.put("customsDocumentReference", movement.getCustomsDocumentReference());
+        String template = movement.getEntry() ? "entry_movement.ftl" : "out_movement.ftl";
+        configuration.getTemplate(template).process(model, stringWriter);
         return stringWriter.getBuffer().toString();
     }
 }
