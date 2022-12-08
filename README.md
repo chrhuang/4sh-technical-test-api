@@ -3,6 +3,6 @@
 
 Create database named `4sh_api` with MySql
 
-Command to launch the project
+Command to run the project in local
 
 `./gradlew bootRun`
