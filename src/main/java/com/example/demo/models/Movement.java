@@ -32,8 +32,6 @@ public class Movement {
     private Boolean entry;
     @NotBlank
     private String warehouse;
-    @NotBlank
-    private String warehouseCode;
     @Pattern(regexp="^[A-Za-z]*$",message = "Invalid Input")
     @Length(min = 1, max = 1)
     private String customsCode;
